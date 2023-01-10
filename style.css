@@ -21,8 +21,15 @@ header {
   line-height: 7vh;
   font-size: 18px;
   font-weight: bold;
+  position: relative;
 }
-
+header button{
+    position: absolute;
+    right: 20px;
+    padding: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 main {
   height: 85vh;
   padding: 10px;

@@ -6,6 +6,7 @@ class Chat {
   msgInput = document.querySelector("#messageInput");
   msgSendBtn = document.querySelector("#send");
   main = document.querySelector("main");
+  clearBtn = document.querySelector(".clear");
   user = {};
   msg = "";
   sorket = new WebSocket("ws://localhost:3000");
@@ -64,6 +65,11 @@ class Chat {
       let message = JSON.parse(e.data);
       this.msgList.push(message);
       this.render();
+    };
+
+    this.clearBtn.onclick = () => {
+      localStorage.clear();
+      window.location.reload();
     };
   }
 
