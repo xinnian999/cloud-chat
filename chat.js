@@ -103,7 +103,7 @@ class Chat {
       </div>`;
       }
 
-      this.header.innerText = `在线人数：${userTotal}`;
+      this.header.innerHTML = `在线人数：${userTotal} <button class="clear">重置角色</button>`;
     });
     this.main.innerHTML = html;
 
