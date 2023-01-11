@@ -1,5 +1,6 @@
 class Chat {
   header = document.querySelector("header");
+  userTotal = document.querySelector(".userTotal");
   modal = document.querySelector("#modal");
   modalInput = document.querySelector("#modal input");
   modalButton = document.querySelector("#modal button");
@@ -36,6 +37,10 @@ class Chat {
       this.user = JSON.parse(user);
     }
 
+    this.bind();
+  }
+
+  bind() {
     // 消息输入与发送事件+回车发送事件
     this.msgInput.oninput = (e) => {
       this.msg = e.target.value;
@@ -63,7 +68,7 @@ class Chat {
     // 消息接收监听
     this.sorket.onmessage = (e) => {
       let message = JSON.parse(e.data);
-      this.msgList.push(message);
+      this.msgList = message;
       this.render();
     };
 
@@ -103,7 +108,7 @@ class Chat {
       </div>`;
       }
 
-      this.header.innerHTML = `在线人数：${userTotal} <button class="clear">重置角色</button>`;
+      this.userTotal.innerHTML = userTotal;
     });
     this.main.innerHTML = html;
 

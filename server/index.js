@@ -1,20 +1,20 @@
 const ws = require("nodejs-websocket");
 const moment = require("moment");
 
+const msgList = [];
+
 var server = ws
   .createServer(function (conn) {
     conn.on("text", function (obj) {
-      obj = {
+      msgList.push({
         ...JSON.parse(obj),
+        userTotal: server.connections.length,
         time: moment().format("YYYY-MM-DD HH:mm:ss"),
-      };
-
-      // 连接用户数
-      obj.userTotal = server.connections.length;
+      });
 
       // 发送广播
       server.connections.forEach((conn) => {
-        conn.sendText(JSON.stringify(obj));
+        conn.sendText(JSON.stringify(msgList));
       });
     });
 
